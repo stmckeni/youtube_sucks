@@ -944,9 +944,9 @@ class _da_window(QMainWindow):
         global _001_ydl_status_data_deez_nutz
         global _974_goo_text
         _ooba = self._ooba
-        _nbo_thread = self._ooga_thread_list
+        #_nbo_thread = self._ooga_thread_list
         _ooba.append(_download_window_widget())
-        _nbo_thread.append(_download_worker())
+        _nbo_thread = _download_worker()
         #_download_window_widget()._8hnt8bg_progress_bar
         #_download_window_widget()._09085_file_download_status.append(str)
         print("deez fuckin nuts")
@@ -990,22 +990,22 @@ class _da_window(QMainWindow):
 
         
         for i in range(0,len(_ooba)):
-            self.timer.timeout.connect(lambda : _39048referesher(_ooba[i],_nbo_thread[i]))
+            self.timer.timeout.connect(lambda : _39048referesher(_ooba[i],_nbo_thread))
             self.timer.start()
-            _nbo_thread[i].signals.logger_signal.emit(_ooba[i]._09085_file_download_status)
+            _nbo_thread.signals.logger_signal.emit(_ooba[i]._09085_file_download_status)
             _ooba[i]._09085_file_download_status.append(_974_goo_text)
             #_ooba[i]._8hnt8bg_progress_bar.setValue(int(_001_ydl_status_data_deez_nutz['_percent_str']))
             
-            _nbo_thread[i].ext = self._03_output_ext
+            _nbo_thread.ext = self._03_output_ext
             
             
-            _nbo_thread[i].youtube_or_video_url = self._0934j_url_video_box.text()
+            _nbo_thread.youtube_or_video_url = self._0934j_url_video_box.text()
 
 
             
             
             _ooba[i].show()
-            _ooba[i].threadpool.start(_nbo_thread[i])
+            _ooba[i].threadpool.start(_nbo_thread)
 
             
         #TODO: function to properly stop the timer after the download is finished (possibly within for loop)    
